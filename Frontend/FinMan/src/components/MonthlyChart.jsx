@@ -37,24 +37,26 @@ export default function MonthlyChart({ transactions }) {
   const [view, setView] = useState("bar"); // 'bar' or 'pie'
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  // Group all expenses by description
-  const groupedByDescription = {};
-  transactions.forEach((tx) => {
-    const rawDesc = tx.description?.trim() || "Uncategorized";
-    const normalizedDesc = rawDesc.toLowerCase();
-    groupedByDescription[normalizedDesc] =
-      (groupedByDescription[normalizedDesc] || 0) + tx.amount;
-  });
+  
+// Group all expenses by category
+const groupedByCategory = {};
+transactions.forEach((tx) => {
+  const rawCat = tx.category?.trim() || "Uncategorized";
+  const normalizedCat = rawCat.toLowerCase();
+  groupedByCategory[normalizedCat] =
+    (groupedByCategory[normalizedCat] || 0) + tx.amount;
+});
 
-  const barChartData = Object.entries(groupedByDescription).map(
-    ([desc, total]) => ({
-      description: formatLabel(desc),
-      total,
-    })
-  );
+const barChartData = Object.entries(groupedByCategory).map(
+  ([cat, total]) => ({
+    category: formatLabel(cat),
+    total,
+  })
+);
+
 
   // Get list of unique descriptions (capitalized)
-  const allCategories = Object.keys(groupedByDescription).map(formatLabel);
+  const allCategories = Object.keys(groupedByCategory).map(formatLabel);
 
   // Group by month for selected category
   const pieChartData = [];
@@ -108,7 +110,7 @@ export default function MonthlyChart({ transactions }) {
               margin={{ top: 20, right: 30, left: 10, bottom: 60 }}
             >
               <XAxis
-                dataKey="description"
+                dataKey="category"
                 angle={-45}
                 textAnchor="end"
                 interval={0}

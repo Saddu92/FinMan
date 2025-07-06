@@ -13,7 +13,7 @@ const getTransactions = async (req, res) => {
 // @desc    Create new transaction
 const createTransaction = async (req, res) => {
   try {
-    const { amount, description, date } = req.body;
+    const { amount, description, date ,category} = req.body;
 
     // Basic validation
     if (!amount || !date) {
@@ -24,6 +24,7 @@ const createTransaction = async (req, res) => {
       amount,
       description,
       date,
+      category
     });
 
     res.status(201).json(transaction);
