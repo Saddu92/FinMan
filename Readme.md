@@ -38,17 +38,7 @@ Live Demo:https://fin-man-sigma.vercel.app/
 
 ---
 
-## 🌍 Deployment
 
-### 🔹 Frontend (Vercel)
-- Vercel URL: `https://your-vercel-url.vercel.app`
-- Uses environment variable: `VITE_API_URL=https://your-backend-url.onrender.com`
-
-### 🔹 Backend (Render)
-- Render URL: `https://your-backend-url.onrender.com`
-- Environment Variables:
-  - `PORT=5000`
-  - `MONGOURI=<your-mongodb-uri>`
 
 ---
 
